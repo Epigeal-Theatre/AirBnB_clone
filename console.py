@@ -2,6 +2,20 @@
 
 
 #modules to use
+import cmd
+import models
+from shlex import split as split
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+
+new_classes = {'BaseModel': BaseModel, 'User': User, 'State': State,
+               'Amenity': Amenity, 'Place': Place, 'City': City,
+               'Review': Review}
 
 
 # here we declare the HBNBCommand class
