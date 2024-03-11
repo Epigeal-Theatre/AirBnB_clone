@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-    Define the class FileStorage Module
+    Define class FileStorage Module
 """
 import json
 import models
@@ -8,7 +8,7 @@ import models
 
 class FileStorage:
     """
-        do Serialize instances to JSON file and deserialize to JSON file as needed.
+        Serializes instances to JSON file and deserializes to JSON file.
     """
     __file_path = "file.json"
     __objects = {}
@@ -29,7 +29,7 @@ class FileStorage:
 
     def save(self):
         """
-        Serialize the objects into our JSON file
+        Serializes the objects into JSON file
         """
         objects_dict = {}
         for key, val in FileStorage.__objects.items():
@@ -37,7 +37,6 @@ class FileStorage:
 
         with open(FileStorage.__file_path, mode='w', encoding="UTF8") as fd:
             json.dump(objects_dict, fd)
-
 
     def reload(self):
         """
