@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 
-
-#modules to use
 import cmd
 import models
 from shlex import split as split
@@ -18,33 +16,32 @@ new_classes = {'BaseModel': BaseModel, 'User': User, 'State': State,
                'Review': Review}
 
 
-# here we declare the HBNBCommand class
-
+# Declare the HBNBCommand class
 class HBNBCommand(cmd.Cmd):
     """
-    this is the command interpreter
+    command interpreter
     """
     prompt = "(hbnb) "
 
     def do_quit(self, line):
-        """ Quit command.to be used  to exit the program.
+        """ Quit command to exit the program.
         """
         return True
 
     def do_EOF(self, line):
-        """ Exit. exit the program."""
+        """ Exit the program."""
         print("")
         return True
 
     def emptyline(self):
-        """ Should not execute anything """
+        """ Shouldn’t execute anything. """
         pass
 
     def do_create(self, line):
-        """Create command. used to create a new User"""
+        """Create command to create new User"""
         splitline = split(line)
         if not splitline:
-            print("** class name is missing **")
+            print("** class name missing **")
         elif splitline[0] not in new_classes:
             print("** class doesn't exist **")
         else:
@@ -53,46 +50,46 @@ class HBNBCommand(cmd.Cmd):
             new_instance.save()
 
     def do_show(self, line):
-        """Show command. to be used to show an instance based on class name and id"""
+        """Show command to show an instance based on class name and id"""
         if not line:
-            print("** class name is missing **")
+            print("** class name missing **")
         elif line.split()[0] not in new_classes.keys():
             print("** class doesn't exist **")
         elif len(line.split()) < 2:
-            print("** instance id is missing **")
+            print("** instance id missing **")
         else:
             new_instance = "{}.{}".format(line.split()[0], line.split()[1])
             objs = models.storage.all()
 
             if new_instance not in objs:
-                print("** no instance was found **")
+                print("** no instance found **")
             else:
                 print(objs[new_instance])
 
     def do_destroy(self, line):
-        """Delete command. to be used to delete an instance based on class name and id"""
+        """Delete command to delete an instance based on class name and id"""
         splitline = split(line)
 
         if not splitline:
-            print("** class name is missing **")
+            print("** class name missing **")
             return False
 
         elif splitline[0] not in new_classes:
             print("** class doesn't exist **")
 
         elif len(splitline) < 2:
-            print("** instance id is missing **")
+            print("** instance id missing **")
 
         else:
             new_instance = splitline[0] + '.' + splitline[1]
             if new_instance not in models.storage.all():
-                print("** no instance was  found **")
+                print("** no instance found **")
             else:
                 del models.storage.all()[new_instance]
                 models.storage.save()
 
     def do_all(self, line):
-        """All command. to be used to print all instances based or not class name"""
+        """All command to print all instances based or not class name"""
         str_list = []
 
         if not line:
@@ -110,20 +107,20 @@ class HBNBCommand(cmd.Cmd):
         print(str_list)
 
     def do_update(self, line):
-        """Update command. to be used to update an instance base on class name and id"""
+        """Update command to update an instance base on class name and id"""
         splitline = split(line)
 
         if not splitline:
-            print("** class name is missing **")
+            print("** class name missing **")
 
         elif splitline[0] not in new_classes:
             print("** class doesn't exist **")
 
         elif len(splitline) < 2:
-            print("** instance id is missing **")
+            print("** instance id missing **")
 
         elif len(splitline) < 3:
-            print("** attribute name is missing **")
+            print("** attribute name missing **")
 
         elif len(splitline) < 4:
             print("** value missing **")
@@ -131,7 +128,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             new_instance = splitline[0] + '.' + splitline[1]
             if new_instance not in models.storage.all():
-                print("** no instance was found **")
+                print("** no instance found **")
             else:
                 setattr(models.storage.all()[new_instance],
                         splitline[2], splitline[3])
