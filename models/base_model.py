@@ -9,10 +9,9 @@ from datetime import datetime
 import models
 
 
-
 class BaseModel:
     """
-    this is the BaseModel class Parent class to take care of the initialization,
+    BaseModel class Parent class to take care of the initialization,
     serialization and deserialization of instances
     """
     def __init__(self, *args, **kwargs):
@@ -32,13 +31,13 @@ class BaseModel:
                     setattr(self, key, val)
 
     def __str__(self):
-        """String representation of BaseModel instance"""
+        """String representation of a BaseModel instance"""
         return ("[{}] ({}) {}".format(self.__class__.__name__,
                                       self.id, self.__dict__))
 
     def __repr__(self):
         """
-            Return a string representation of BaseModel class
+            Return string representation of BaseModel class
         """
         return ("[{}] ({}) {}".format(self.__class__.__name__,
                                       self.id, self.__dict__))
@@ -55,4 +54,4 @@ class BaseModel:
         nw_dct['created_at'] = self.updated_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
         nw_dct['updated_at'] = self.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
 
-        return (nw_dct)
+        return (nw_dct
